@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Nexo · Gestión y seguridad</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Pantalla de Login -->
+    <section id="login-screen" class="login-screen">
+      <div class="login-story">
+        <a class="brand" href="#">
+          ◈ <span>NEXO<span class="brand-small">GESTIÓN CONECTADA</span></span>
+        </a>
+        <div>
+          <span class="eyebrow">TU OPERACIÓN, EN UN SOLO LUGAR</span>
+          <h1>Todo conectado.<br>Todo bajo control.</h1>
+          <p>Personas, inventario y ventas. Una plataforma sencilla con acceso a la medida de tu equipo.</p>
+          <div class="story-tags">
+            <span>01 &nbsp; Gestiona</span>
+            <span>02 &nbsp; Conecta</span>
+            <span>03 &nbsp; Crece</span>
+          </div>
+        </div>
+        <small>Una base flexible para tu próximo proyecto.</small>
+      </div>
+
+      <div class="login-panel">
+        <form id="login-form">
+          <span class="eyebrow">BIENVENIDO A NEXO</span>
+          <h2>Inicia sesión</h2>
+          <p class="muted">Accede con tu cuenta para continuar.</p>
+
+          <label>
+            Usuario
+            <input name="username" autocomplete="username" required autofocus placeholder="Tu nombre de usuario">
+          </label>
+
+          <label>
+            Contraseña
+            <input name="password" type="password" autocomplete="current-password" required placeholder="Tu contraseña">
+          </label>
+
+          <details>
+            <summary>Conexión al servidor</summary>
+            <label>
+              URL de la API
+              <input name="base" type="url" value="http://localhost:8050" required>
+            </label>
+            <small>La aplicación Spring Boot debe estar en ejecución.</small>
+          </details>
+
+          <p id="login-error" class="error" role="alert"></p>
+
+          <button class="primary wide" type="submit">Entrar a mi espacio <span>→</span></button>
+          <small class="login-foot">El acceso depende de los permisos de tu cuenta.</small>
+        </form>
+      </div>
+    </section>
+
+    <!-- Layout Principal -->
+    <div id="app" class="layout" hidden>
+      <aside id="sidebar">
+        <a class="brand" href="#">
+          ◈ <span>NEXO<span class="brand-small">GESTIÓN CONECTADA</span></span>
+        </a>
+        <span class="nav-label">ESPACIO DE TRABAJO</span>
+        <nav id="navigation" aria-label="Menú principal"></nav>
+        <div class="sidebar-bottom">
+          <div class="connection"><i></i> Sesión conectada</div>
+          <small id="server-label"></small>
+          <button id="logout" class="logout">↪ &nbsp; Cerrar sesión</button>
+        </div>
+      </aside>
+
+      <div class="main">
+        <header>
+          <button id="menu-toggle" class="icon-button" aria-label="Abrir menú">☰</button>
+          <span class="breadcrumb">Espacio de trabajo <span>/</span> <strong id="crumb">Inicio</strong></span>
+          <button id="session-button" class="profile">
+            <span id="avatar" class="avatar"></span>
+            <span>
+              <b id="session-name"></b>
+              <small id="session-role"></small>
+            </span>
+          </button>
+        </header>
+
+        <main id="content" tabindex="-1"></main>
+
+        <footer>
+          Nexo · Gestión y seguridad <span>HTML + CSS + JavaScript</span>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Modal Reutilizable -->
+    <dialog id="modal">
+      <form id="modal-form">
+        <div class="modal-heading">
+          <div>
+            <span class="eyebrow">GESTIÓN NEXO</span>
+            <h2 id="modal-title"></h2>
+          </div>
+          <button type="button" id="modal-close" class="icon-button" aria-label="Cerrar">✕</button>
+        </div>
+
+        <div id="modal-body"></div>
+        <p id="modal-error" class="error" role="alert"></p>
+
+        <div class="modal-footer">
+          <button type="button" id="modal-cancel" class="secondary">Cancelar</button>
+          <button id="modal-save" type="submit" class="primary">Guardar</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
